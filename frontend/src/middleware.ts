@@ -9,7 +9,7 @@ export async function middleware(req: NextRequest) {
   let isAuthenticated = false;
 
   if (cookie) {
-    const res = await fetch("http://localhost:8080/getUser", {
+    const res = await fetch("https://session-auth-theta.vercel.app//getUser", {
       headers: {
         Cookie: `connect.sid=${cookie}`,
       },
