@@ -7,4 +7,5 @@ export interface User {
 export interface WithAuthType {
   user: User | null;
   setUser: (data: User | null) => void;
+  loading: boolean;
 }
