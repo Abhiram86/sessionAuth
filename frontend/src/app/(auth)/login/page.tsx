@@ -12,8 +12,10 @@ import toast from "react-hot-toast";
 import { z } from "zod";
 
 export default function Register() {
-  const { setUser } = useContext(WithAuth);
+  const { user, setUser } = useContext(WithAuth);
   const router = useRouter();
+
+  if (user) router.replace("/dashboard");
 
   const loginSchema = z.object({
     email: z.string().email(),

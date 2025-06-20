@@ -5,14 +5,17 @@ import Button from "@/components/Button";
 import { WithAuth } from "@/context/AuthContex";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { z } from "zod";
 
 export default function Register() {
-  const { setUser } = useContext(WithAuth);
+  const { user, setUser } = useContext(WithAuth);
+  const router = useRouter();
+
+  if (user) router.replace("/dashboard");
 
   const registerSchema = z.object({
     username: z.string().min(4, "Username must be at least 4 characters"),
@@ -32,7 +35,7 @@ export default function Register() {
     const res = await apiRegister(data);
     if (res.user) {
       setUser(res.user);
-      redirect("/dashboard");
+      router.replace("/dashboard");
     } else {
       toast.error(res.error);
     }
