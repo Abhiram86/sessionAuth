@@ -25,7 +25,7 @@ export default function Dashboard() {
   return (
     <div className="flex flex-col text-3xl items-center text-center mt-20 min-h-[200px]">
       {loading ? (
-        <div className="w-64 h-8 bg-gray-300 animate-pulse rounded"></div>
+        <div className="w-64 h-24 bg-zinc-600 animate-pulse rounded"></div>
       ) : data ? (
         <p>{data}</p>
       ) : (
