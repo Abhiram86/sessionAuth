@@ -28,7 +28,7 @@ app.use(
       secure: true,
       maxAge: 5 * 60 * 1000,
       httpOnly: true,
-      sameSite: "lax",
+      sameSite: "none",
       path: "/",
     },
   })
