@@ -14,7 +14,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "*",
+    origin: "https://session-auth-7kgi.vercel.app",
     credentials: true,
   })
 );
