@@ -44,7 +44,7 @@ export default function Register() {
   return (
     <div className="mt-20">
       <form
-        className="space-y-4 w-96 mx-auto border p-4 rounded-lg border-zinc-700"
+        className="space-y-4 w-80 mx-auto border p-4 rounded-lg border-zinc-700"
         onSubmit={handleSubmit(onSubmit)}
       >
         <h1 className="font-medium">Register</h1>

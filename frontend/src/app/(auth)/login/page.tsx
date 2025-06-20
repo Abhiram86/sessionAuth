@@ -11,7 +11,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { z } from "zod";
 
-export default function Register() {
+export default function Login() {
   const { user, setUser } = useContext(WithAuth);
   const router = useRouter();
 
@@ -43,7 +43,7 @@ export default function Register() {
   return (
     <div className="mt-20">
       <form
-        className="space-y-4 w-96 mx-auto border p-4 rounded-lg border-zinc-700"
+        className="space-y-4 w-80 mx-auto border p-4 rounded-lg border-zinc-700"
         onSubmit={handleSubmit(onSubmit)}
       >
         <h1 className="font-medium">Login</h1>
