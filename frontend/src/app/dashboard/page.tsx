@@ -1,28 +1,29 @@
+"use client";
+
 import { getDashboard } from "@/api/dashboard";
-import axios from "axios";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
-import React from "react";
+import { WithAuth } from "@/context/AuthContex";
+import { useRouter } from "next/navigation";
+import { useContext, useEffect, useState } from "react";
 
-export default async function Dashboard() {
-  const cookie = (await cookies()).get("connect.sid")?.value;
+export default function Dashboard() {
+  const { user } = useContext(WithAuth);
+  const router = useRouter();
 
-  const res = await axios.get("https://session-auth-theta.vercel.app/getUser", {
-    headers: {
-      Cookie: `connect.sid=${cookie}`,
-    },
-    withCredentials: true,
-  });
+  if (!user) router.replace("/login");
 
-  if (!res.data) redirect("/login");
-
-  console.log(cookie);
-
-  const data = await getDashboard(cookie || "");
+  const [data, setData] = useState<string | null>(null);
+  useEffect(() => {
+    const getData = async () => {
+      const res = await getDashboard();
+      if (!res) return;
+      setData(res.message);
+    };
+    getData();
+  }, []);
   return (
     <div className="flex flex-col text-3xl items-center text-center mt-20">
       {data ? (
-        <p>{data.message}</p>
+        <p>{data}</p>
       ) : (
         <p>you need to be logged in to access this route</p>
       )}

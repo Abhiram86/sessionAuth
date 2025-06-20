@@ -4,14 +4,12 @@ interface Dashboard {
   message: string;
 }
 
-export const getDashboard = async (cookie: string) => {
+export const getDashboard = async () => {
   try {
     const res = await axios.get(
       "https://session-auth-theta.vercel.app/dashboard",
       {
-        headers: {
-          cookie,
-        },
+        withCredentials: true,
       }
     );
     return res.data as Dashboard;
