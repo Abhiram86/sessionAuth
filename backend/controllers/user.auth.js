@@ -27,14 +27,14 @@ export const registerUser = async (req, res) => {
       if (err) {
         return res.status(500).json({ error: "Error saving session" });
       }
-    });
-    res.status(201).json({
-      message: "User registered successfully",
-      user: {
-        id: user._id,
-        username: user.username,
-        email: user.email,
-      },
+      res.status(201).json({
+        message: "User registered successfully",
+        user: {
+          id: user._id,
+          username: user.username,
+          email: user.email,
+        },
+      });
     });
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -92,7 +92,8 @@ export const logoutUser = async (req, res) => {
   res.clearCookie("connect.sid", {
     path: "/",
     httpOnly: true,
-    sameSite: "lax",
+    sameSite: "none",
+    secure: true,
   });
 
   res.status(200).json({ message: "User logged out successfully" });
