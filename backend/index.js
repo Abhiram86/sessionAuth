@@ -25,7 +25,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: false,
+      secure: true,
       maxAge: 5 * 60 * 1000,
       httpOnly: true,
       sameSite: "lax",
