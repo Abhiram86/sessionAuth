@@ -5,7 +5,7 @@ import AuthButton from "./AuthButton";
 export default function SidebarLinks() {
   return (
     <>
-      <div className="flex flex-col d justify-between">
+      <div className="flex flex-col h-[calc(100dvh-3rem)] justify-between">
         <ul className="flex flex-col space-x-2">
           <Link href={"/"} className="w-full">
             <li className="p-2 text-sm rounded-sm hover:bg-yellow-500">Home</li>
