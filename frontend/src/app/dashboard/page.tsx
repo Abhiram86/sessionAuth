@@ -1,10 +1,20 @@
 import { getDashboard } from "@/api/dashboard";
-import { headers } from "next/headers";
+import axios from "axios";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import React from "react";
 
 export default async function Dashboard() {
-  const headersList = await headers();
-  const cookie = headersList.get("cookie");
+  const cookie = (await cookies()).get("cookie")?.value;
+
+  const res = await axios.get("https://session-auth-theta.vercel.app/getUser", {
+    headers: {
+      Cookie: `connect.sid=${cookie}`,
+    },
+    withCredentials: true,
+  });
+
+  if (!res.data) redirect("/login");
 
   console.log(cookie);
 
