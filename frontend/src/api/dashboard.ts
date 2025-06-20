@@ -6,11 +6,14 @@ interface Dashboard {
 
 export const getDashboard = async (cookie: string) => {
   try {
-    const res = await axios.get("http://localhost:8080/dashboard", {
-      headers: {
-        cookie,
-      },
-    });
+    const res = await axios.get(
+      "https://session-auth-theta.vercel.app/dashboard",
+      {
+        headers: {
+          cookie,
+        },
+      }
+    );
     return res.data as Dashboard;
   } catch (error) {
     if (error instanceof AxiosError) {

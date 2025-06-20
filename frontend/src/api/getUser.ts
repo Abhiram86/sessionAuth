@@ -3,9 +3,12 @@ import axios, { AxiosError } from "axios";
 
 export const getUser = async () => {
   try {
-    const res = await axios.get("http://localhost:8080/getUser", {
-      withCredentials: true,
-    });
+    const res = await axios.get(
+      "https://session-auth-theta.vercel.app/getUser",
+      {
+        withCredentials: true,
+      }
+    );
     return res.data as User;
   } catch (error) {
     if (error instanceof AxiosError) {

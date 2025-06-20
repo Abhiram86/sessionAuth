@@ -2,7 +2,7 @@ import { User } from "@/app/types/User";
 import axios, { AxiosError } from "axios";
 
 const router = axios.create({
-  baseURL: "http://localhost:8080/auth",
+  baseURL: "https://session-auth-theta.vercel.app/auth",
   withCredentials: true,
 });
 
