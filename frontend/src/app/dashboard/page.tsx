@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import React from "react";
 
 export default async function Dashboard() {
-  const cookie = (await cookies()).get("cookie")?.value;
+  const cookie = (await cookies()).get("connect.sid")?.value;
 
   const res = await axios.get("https://session-auth-theta.vercel.app/getUser", {
     headers: {
