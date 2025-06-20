@@ -53,7 +53,8 @@ export const loginUser = async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    if (bcrypt.compare(body.password, user.password)) {
+    const isPasswordValid = await bcrypt.compare(body.password, user.password);
+    if (isPasswordValid) {
       req.session.user = {
         id: user._id,
         username: user.username,

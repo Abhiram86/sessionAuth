@@ -8,6 +8,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { z } from "zod";
 
 export default function Register() {
@@ -28,9 +29,11 @@ export default function Register() {
 
   const onSubmit = async (data: z.infer<typeof loginSchema>) => {
     const res = await apiLogin(data);
-    if (res) {
-      setUser(res);
+    if (res.user) {
+      setUser(res.user);
       redirect("/dashboard");
+    } else {
+      toast.error(res.error);
     }
   };
 

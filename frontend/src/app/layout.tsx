@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import WithAuthProvider from "@/context/AuthContex";
 import Sidebar from "@/components/Sidebar";
 import SidebarLinks from "@/components/SidebarLinks";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,6 +39,7 @@ export default function RootLayout({
           </Sidebar>
           {children}
         </WithAuthProvider>
+        <Toaster />
       </body>
     </html>
   );

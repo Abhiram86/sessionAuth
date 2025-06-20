@@ -13,28 +13,34 @@ export const apiRegister = async (data: {
 }) => {
   try {
     const res = await router.post("/register", data);
-    return res.data as User;
+    const user = res.data as User;
+    return { user, error: null };
   } catch (error) {
-    if (error instanceof AxiosError) {
+    let errorMessgae = "Something went wrong";
+    if (error instanceof AxiosError && error.response) {
       console.log("error is ", error.message);
+      errorMessgae = error.response.data?.error || error.message;
     } else {
       console.log(error);
     }
-    return null;
+    return { user: null, error: errorMessgae };
   }
 };
 
 export const apiLogin = async (data: { email: string; password: string }) => {
   try {
     const res = await router.post("/login", data);
-    return res.data as User;
+    const user = res.data as User;
+    return { user, error: null };
   } catch (error) {
-    if (error instanceof AxiosError) {
+    let errorMessgae = "Something went wrong";
+    if (error instanceof AxiosError && error.response) {
       console.log("error is ", error.message);
+      errorMessgae = error.response.data?.error || error.message;
     } else {
       console.log(error);
     }
-    return null;
+    return { user: null, error: errorMessgae };
   }
 };
 
